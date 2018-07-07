@@ -1,0 +1,195 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #C2C2C2 url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: #FFF;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+.deck .card.disabled {
+    pointer-events: none;
+}
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+    color: #FFF;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    color: #FFF;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+    color: #FFF;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.2s ease-in;
+  -o-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  -webkit-transition-delay: 0.7s;
+       -o-transition-delay: 0.7s;
+          transition-delay: 0.7s;
+}
+
+.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+#popupmodal .animate {
+    position:relative;
+    animation:animatetop 0.4s}
+        @keyframes animatetop{
+            from{top:-300px;opacity:0} 
+            to{top:0;opacity:1}
+}
+
+#popupmodal {
+    z-index:3;
+    color:  #FFF;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 25px;
+    background: linear-gradient(160deg, #00c3ff 0%, #ffff1c 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    position: fixed;
+    top: 70px;
+    left: 325px;
+    z-index: 1000005;
+    visibility: hidden;
+}
+
+#popupmodal .close {
+/*    background: linear-gradient(160deg, #2980B9 0%, #6DD5FA 100%); */  
+    width: auto;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    color: #C2C2C2;
+    top: 0px;
+    right: 0px;
+    border-radius: 8px;
+
+}
+
+#play-again {
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#play-again:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background: linear-gradient(160deg, #00C9FF 0%, #92FE9D 100%);
+}
