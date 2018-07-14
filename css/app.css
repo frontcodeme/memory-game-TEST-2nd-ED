@@ -1,11 +1,13 @@
 html {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit;
 }
 
 html,
@@ -22,10 +24,19 @@ body {
 }
 
 .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 h1 {
@@ -39,17 +50,29 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 650px;
+    min-height: 650px;
+    background: -webkit-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
+    background: -o-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    -webkit-box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+            box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin: 0 0 3em;
+    /* this is set to fix an issue with restart-icon__holder*/
+    z-index: 1;
 }
 
 .deck .card {
@@ -63,13 +86,23 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+            box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+
+    animation-name: flipIny;
+    -webkit
 }
 
 .deck .card.show {
@@ -141,9 +174,12 @@ h1 {
 }
 
 #popupmodal {
+/*    position: absolute;
+*/    position: fixed;
+    text-align: center;
     z-index:3;
+    z-index: 1000005;
     color:  #FFF;
-    position: absolute;
     width: auto;
     height: auto;
     padding: 25px;
@@ -151,10 +187,8 @@ h1 {
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    position: fixed;
     top: 70px;
     left: 325px;
-    z-index: 1000005;
     visibility: hidden;
 }
 
@@ -193,3 +227,35 @@ h1 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     background: linear-gradient(160deg, #00C9FF 0%, #92FE9D 100%);
 }
+
+/* i'm using !important here to override the element style because i didn't nested it from his parent */
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left !important;
+}
+/* Animations */
+/*
+@keyframes flipIny{
+                from {
+                    transform: perspective(400px) rotate3d(90deg);
+                    animation-timing-function: ease-in;
+                    opacity: 0;
+                }
+                40% {
+                   -webkit-transform: perspective(400px) rotate3d(-20deg);
+                   animation-timing-function: ease-in;
+                }
+                60% {
+                   -webkit-transform: perspective(400px) rotate3d(10deg);
+                   opacity: 1;
+                }
+                80% {
+                   -webkit-transform: perspective(400px) rotate3d(-5deg);
+                }
+                to {
+                    transform: perspective(400px);
+                }                                                                              
+}*/

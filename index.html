@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -23,10 +24,16 @@
         	</ul>
 
         	<span class="moves"></span> Moves
-
+            
+            <div class="float-right">
+            <!-- <div id="timer-show" class="float-left">
+              <span id="timer">00 : 00</span>
+            </div> -->
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
+            <span class="timer">Time: <time></time></span>
+
         </section>
 
         <ul class="deck"></ul>
@@ -50,12 +57,8 @@
             </div>
 
         </div>
+    <script src="js/easytimer.min.js"></script> 
     <script src="js/app.js"></script>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
 </body>
 </html>
-
-<!-- <h1><time>00:00:00</time></h1>
-<button id="start">start</button>
-<button id="stop">stop</button>
-<button id="clear">clear</button> -->
