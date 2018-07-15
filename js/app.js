@@ -1,3 +1,8 @@
+/*
+ * Author: Moamen Ali
+ * Mail: moamen.ux@gmail.com
+ */ 
+
  /*
  * Create a list that holds all of your cards
  */
@@ -141,16 +146,6 @@ function compare(card) {
 	} 
 }
 
-// Moves count & incrementation
-let moveCounter = document.querySelector('.moves');
-let moves = 0;
-moveCounter.innerHTML = 0;
-function incrementMoves() {
-	moves++;
-	moveCounter.innerHTML = moves;
-	decrementStars();
-} 
-
 /*
 // end game when all cards are matched!*
 */
@@ -182,148 +177,50 @@ restartbtn.addEventListener('click', function () {
 
     resetGame();
     initGame();
-});		
+});
 
-// Rating "decrementing Stars"!
-const starsCounter = document.querySelector(".stars"); 
-	function decrementStars(argument) {
-	if (moves > 8 && moves < 24) {
-		var rate = document.getElementById("rate");
-		// starsCounter.innerHTML = moves;
-    	rate.removeChild(rate.childNodes[0]);
-	}
+// Moves count & incrementation
+let moveCounter = document.querySelector('.moves');
+let moves = 0;
+moveCounter.innerHTML = 0;
+function incrementMoves() {
+	moves++;
+	moveCounter.innerHTML = moves;
+	// update moves value and call to update stars
+    updateStars();
 }
 
+// initialize stars number and icon in HTML
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+function initStars() {
+    stars = 3;
+    $('.stars i').removeClass("fa-star-o");
+    $('.stars i').addClass("fa-star");
+    updateStars();
+}
 
-// if all 16 cards are matched, stop the timer and display congrats
-                // if (matchCounter === 16){
-                //     stopTimer();
-                //     // Allow time for the matching animation to finish before display popup
-                //     setTimeout(function() {
-                //         return displayCongrats();}, 900
-                //     );
-                // }
+ // define the rules on the number os stars and update stars on the view
 
-// Display the congrats message with the move count, total time, star rating and play again 'button'
-// function displayCongrats() {
-//     const popup = document.getElementsByClassName(`congratsPopup`);
-//     popup[0].className = `congratsPopup`;
-//     popup[0].innerHTML =
-//         `<h2 class="congratsHeading" > Congratulations! </h2>
-//         <h3 class="congratsTagline" > You've won the game! </h3>
-//         <p class="congratsMove" > ${moveCounter} moves </p>
-//         <p class="congratsTime" > ${timer.innerHTML} total time </p>
-//         <p class="congratsStar" > ${starRating} stars </p>
-//         <p class="congratsPlay" > Play Again </p>`;
-//     const play = document.getElementsByClassName(`congratsPlay`);
-//     play[0].addEventListener(`click`,reset);
-// }
+function updateStars() {
+    // if moves <=12 with 3 starts
+    if (moves <= 12) {
+        $('.stars .fa').addClass("fa-star");
+        stars = 3;
+    } else if(moves >= 13 && moves <= 14){
+        $('.stars li:last-child .fa').removeClass("fa-star");
+        $('.stars li:last-child .fa').addClass("fa-star-o");
+        stars = 2;
+    } else if (moves >= 15 && moves <20){
+        $('.stars li:nth-child(2) .fa').removeClass("fa-star");
+        $('.stars li:nth-child(2) .fa').addClass("fa-star-o");
+        stars = 1;
+    } else if (moves >=20){
+        $('.stars li .fa').removeClass("fa-star");
+        $('.stars li .fa').addClass("fa-star-o");
+        stars = 0;
+    }
+    $('.win-container .stars-number').text(stars);
 
-// // Hide the congrats popup by adding the class 'dimmed'
-// // Erase the congrats text messages
-// function hideCongrats() {
-//     const popup = document.getElementsByClassName(`congratsPopup`);
-//     popup[0].className = `congratsPopup dimmed`;
-//     popup[0].innerHTML = ``;
-// }
+}
 
-
-
-//Timer { if !firstClick }
-// allCards.onclick = begin;
-// function begin(e) {
-//         // features function
-//         if (!firstClick) {
-//           timer();
-//         }
-// 	}
-
-// Resets timer state and restarts timer
-// function resetTimer() {
-//   clearInterval(timer.clearTime);
-//   timer.seconds = 0;
-//   timer.minutes = 0;
-//   $(".timer").text("0:00");
-
-//   timer.clearTime = setInterval(startTimer, 1000);
-// }
-
-	//gameIsRunning = true;
-	//let play = false;
-	// cards.each(function () {
-	//     // cache $(this) in a variable to improve performance .. don't call it many times just once
-	//     let $this = $(this);
-
-
-	//     $this.on('click', function () {
-
-	//       if (play) {
-	//         // features function
-	//         if (!firstClick) {
-	//           timer();
-	//         }
-
-	// // // // REPLACEMENT
-	// timer function .. count seconds from the game start to the end
-	// let firstClick = false;
-	// let counter;
-	// let seconds = 0;
-	// let second = 0;
-	// let minute = 0;
-
-	// var onClick = function() {
-//  		if (isValid($(this))) {
-// 	    	if (open.length === 0) {
-// 		      openCard($(this));
-// 		    } else if (open.length === 1) {
-// 		      openCard($(this));
-// 	}	
-// 		}
-// 			}
-// // var onClick = function() {
-// //   if(timer.seconds == 0 && timer.minutes == 0){
-// //     resetTimer();
-// //   }
-
-
-// // function resetTimer() {
-// //   clearInterval(timer.clearTime);
-// //   timer.seconds = 0;
-// //   timer.minutes = 0;
-// //   $(".timer").text("0:00");
-
-// //   timer.clearTime = setInterval(startTimer, 1000);
-// // }
-
-
-	//Start time first card is clicked
-
-	//Start timer
-	// var startTimer = function() {
-	//   if (timer.seconds === 59) {
-	//     timer.minutes++;
-	//     timer.seconds = 0;
-	//   } else {
-	//     timer.seconds++;
-	//   }
-	// }
-	  // Ensure that single digit seconds are preceded with a 0
-	  // var formattedSec = "0";
-	  // if (timer.seconds < 10) {
-	  //   formattedSec += timer.seconds;
-	  // } else {
-	  //   formattedSec = String(timer.seconds);
-	  // }
-
-	  // var time = String(timer.minutes) + ":" + formattedSec;
-	  // $(".timer").text(time);
-
-	// // // Animate matched cards 
-	// animateMatched = (openCards) =>{
-	// 	animateDa(openCards);
-	// 	animateTada(openCards);
-	// 	hideSymbols(openCards);
-	// 	openCards = [];
-	// }
+// END of app.js
