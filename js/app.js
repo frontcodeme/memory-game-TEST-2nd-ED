@@ -69,43 +69,9 @@ allCards.forEach(function(card) {
 			card.classList.add('open', 'show', 'disabled');
 			// check if cards match!
 			compare();
-			// // Start the timer if it is the first click
-	  //   if (moveCounter === 1) {
-	  //       timeInt = setInterval(timer, 1000);
-	    // }
 		}
 	});
 });
-
-// // timer function .. count seconds from the game start to the end
-//   let firstClick = false;
-//   let counter;
-//   let seconds = 0;
-//   let second = 0;
-//   let minute = 0;
-
-//   function timer() {
-//     firstClick = true;
-//     counter = setInterval(function () {
-//             seconds += 1;
-
-//             second = (seconds % 60);
-//             minute = parseInt(seconds / 60);
-
-//             // if second < 10 add a 0 before the seconds
-//             if (second < 10) {
-//               second = `0${(seconds % 60)}`;
-//             }
-
-//             // if minutes < 10 add a 0 before the minutes
-//             if (minute < 10) {
-//               minute = `0${parseInt(seconds / 60)}`;
-//             }
-
-//             $('#time-info').html(`${minute} : ${second}`);
-
-//         }, 1000);
-//   }
 
 /*
 // Compare opened cards function ***
