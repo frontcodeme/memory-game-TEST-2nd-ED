@@ -8,6 +8,7 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/app.css">
+    <script src="js/jquery-3.3.1.slim.min.js"></script> 
 </head>
 <body>
 
@@ -26,9 +27,7 @@
 
         	<span class="moves"></span> Moves
             
-            <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+                <button class="restart"><i class="fa fa-repeat"></i></button>
             <span class="timer">Time: <time></time></span>
 
         </section>
@@ -36,26 +35,30 @@
         <ul class="deck"></ul>
 
     </div>
-        <div id="popupmodal" class="animate">
-            <div class="popup">
-                <h2>Congratulations - you made it!</h2>
+
+        <div id="win-container">
+            <div>
+                <h2>Fantastic job! You made it!</h2>
                 <!-- <a class="close" href="#" >×</a> -->
                 <div class="content-1">
-                   Fantastic job! See your journey in details! 
+                   Your journey in details! 
                 </div>
-                <div class="content-2">
+                <p>You did:<!-- </br>  -->
+                    <span class="moves"></span> moves and 
+                    <span class="stars-number"></span> stars
+                </p>
+                <p><span class="timer">During: <time></time></span></p>
+                <!-- <div class="content-2">
                     <p>You made: <span id="finalMove"> </span> moves </p>
                     <p>in <span id="totalTime"> </span> </p>
                     <p>And you rating is:  <span id="starRating"></span></p>
-                </div>
-                <button id="play-again"> <!-- onclick="playAgain()" -->
-                    <a>Can do better than that? Play again!</a>
-                </button>
+                </div> -->
+                <p>Can do better than that?</p>
+                <button type="button" id="play-again"><a>Play again!</a></button>
             </div>
 
         </div>
     <script src="js/easytimer.min.js"></script> 
     <script src="js/app.js"></script>
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
 </body>
 </html>

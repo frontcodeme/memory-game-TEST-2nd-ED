@@ -3,10 +3,6 @@
  * Mail: moamen.ux@gmail.com
  */ 
 
- /*
- * Create a list that holds all of your cards
- */
-
 //Create a list [ARRAY] that holds all of your cards
 
 let cards = ['fa-diamond', 'fa-diamond',
@@ -22,7 +18,6 @@ let cards = ['fa-diamond', 'fa-diamond',
 // Manifactor the HTML holding the cards
 
 function generateCard(card) {
-	
 	return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;			
 }
 
@@ -42,31 +37,43 @@ function shuffle(array) {
 }
 
 // initialise the "TIMER" with ('asyTimer.js') from https://github.com/albert-gonzalez/easytimer.js by Albert Gonzalez
-
 let timer = new Timer();
-timer.start();
-timer.addEventListener('secondsUpdated', function (e) {
-    $('time').html(timer.getTimeValues().toString());
-});
+	timer.start();
+	timer.addEventListener('secondsUpdated', function (e) {
+	    $('time').html(timer.getTimeValues().toString());
+	});
 
+// Intialize the game by calling all functions needed to buld the game 
 
 function initGame() {
-		let deck = document.querySelector('.deck');
-	    // shuffle cards using shuffle function
-		let cardHTML = shuffle(cards).map(function(card) {
-			return generateCard(card);
-		});
-		deck.innerHTML = cardHTML.join('');
-		timer.start();
+    initMoves();
+    initStars();
+    shuffleCards();
+    timer.start();
+    endGame();
+}
+initGame();  
+
+// shuffle cards using shuffle function
+
+function shuffleCards() {
+	let cardHTML = shuffle(cards).map(function(card) {
+	deck.innerHTML = cardHTML.join('');	
+		return generateCard(card);
+	});
 }
 
-initGame();
+// Add query selectors & Declare necessary variables as defualt!
 
+let deck = document.querySelector('.deck');
 let allCards = document.querySelectorAll('.card');
 let openCards = []; //openCards.length 0\EMPTY\RESET!
 let matchedCards = [];
+let moves = 0;
+let stars = 3;
 
-// Click events
+// Add Event Listeners & edit cards visual status
+
 allCards.forEach(function(card) { 
 	card.addEventListener('click', function(e) { 
 		//Keep cards open in several condition..
@@ -80,7 +87,6 @@ allCards.forEach(function(card) {
 });
 
 // Compare opened cards
-
 function compare(card) {
 
 	if (openCards.length == 2 ) { 
@@ -91,10 +97,12 @@ function compare(card) {
 						openCards[0].classList.add('match');
 						openCards[0].classList.add('open');
 						openCards[0].classList.add('show');
+						openCards[0].classList.add('rubberBand');
 						//Minepulate the second open card!
 						openCards[1].classList.add('match');
 						openCards[1].classList.add('open');
 						openCards[1].classList.add('show');
+						openCards[1].classList.add('rubberBand');
 						//Reset open cards
 						openCards = [];					
 						
@@ -104,25 +112,14 @@ function compare(card) {
 					} else {
 						setTimeout(function() { 
 							openCards.forEach(function(card) {
-							card.classList.add('not-match');
-							card.classList.remove('open', 'show', 'not-match', 'disabled');
+								card.classList.remove('open', 'show', 'disabled');
 							});
 							//Reset open cards
 							openCards = [];
-						},  700); //wait for split second (showing cards)
+						},  1000); //wait for split second (showing cards)
 					incrementMoves();
 					}
 	} 
-}
-
-/*
-// end game when all cards are matched!*
-*/
-
-function endGame() {
-	if(matchedCards.length === 16){
-		displayPopup();
-	}
 }
 
 //popupmodal
@@ -130,31 +127,19 @@ function displayPopup() {
 	var popupmodal = document.getElementById("win-container");
 	popupmodal.style.visibility = "visible";
 }
-	
-playAgain = document.querySelector("#play-again");
-playAgain.addEventListener("click", function() {
-	resetGame()
-});					
 
-// reset game function
-	function resetGame() {
-		window.location.reload();
+// Moves count & incrementation:
+// - initialize moves value
+
+function initMoves() {
+    moves = 0;
+    $('.moves').text(moves);
 }
+// - incrementation the moves counter by 1 each try
 
-const restartbtn = document.querySelector(".restart");
-restartbtn.addEventListener('click', function () {
-
-    resetGame();
-    initGame();
-});
-
-// Moves count & incrementation
-let moveCounter = document.querySelector('.moves');
-let moves = 0;
-moveCounter.innerHTML = 0;
 function incrementMoves() {
 	moves++;
-	moveCounter.innerHTML = moves;
+    $('.moves').text(moves);
 	// update moves value and call to update stars
     updateStars();
 }
@@ -168,7 +153,7 @@ function initStars() {
     updateStars();
 }
 
- // define the rules on the number os stars and update stars on the view
+// define the rules on the number os stars and update stars on the view
 
 function updateStars() {
     // if moves <=12 with 3 starts
@@ -191,5 +176,31 @@ function updateStars() {
     $('.win-container .stars-number').text(stars);
 
 }
+
+// reset game function  || window.location.reload();
+// Listeners for the restart btn 
+
+$('.restart').on('click', function (event) {
+    event.preventDefault();
+    timer.reset();
+    initGame();
+}); 
+
+// end game when all cards are matched!
+
+function endGame() {
+	if(matchedCards.length === 16){
+		timer.stop();
+		displayPopup();
+        $(".container").hide();
+        $(".win-container").show();
+    } else{
+        $(".container").show();
+        $(".win-container").hide();
+	}
+}
+
+// initialise the game on page loading.
+
 
 // END of app.js
