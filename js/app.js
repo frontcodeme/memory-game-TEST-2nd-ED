@@ -9,15 +9,9 @@
 
 //Create a list [ARRAY] that holds all of your cards
 
-let cards = ['fa-diamond', 'fa-diamond',
-			'fa-paper-plane-o', 'fa-paper-plane-o',
-			'fa-anchor', 'fa-anchor',
-			'fa-bolt', 'fa-bolt',
-			'fa-cube', 'fa-cube',
-			'fa-leaf', 'fa-leaf',
-			'fa-bicycle', 'fa-bicycle',
-			'fa-bomb', 'fa-bomb',
-			];
+const symbols = [`fa-diamond`, `fa-paper-plane-o`, `fa-anchor`,
+ `fa-bolt`, `fa-cube`, `fa-leaf`, `fa-bicycle`, `fa-bomb`];
+const cards = [...symbols, ...symbols];
 
 // Manifactor the HTML holding the cards
 
@@ -70,7 +64,9 @@ let matchedCards = [];
 allCards.forEach(function(card) { 
 	card.addEventListener('click', function(e) { 
 		//Keep cards open in several condition..
-		if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')); {
+		if (!card.classList.contains('open') && 
+			!card.classList.contains('show') && 
+			!card.classList.contains('match')); {
 			openCards.push(card);
 			card.classList.add('open', 'show', 'disabled');
 			// check if cards match!
@@ -121,6 +117,7 @@ function compare(card) {
 
 function endGame() {
 	if(matchedCards.length === 16){
+		timer.stop();
 		displayPopup();
 	}
 }

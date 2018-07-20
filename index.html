@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Matching Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="">
+    <title>Matching Game</title>
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <script src="js/jquery-3.3.1.slim.min.js"></script> 
 </head>
 <body>
 
@@ -35,29 +35,29 @@
         <ul class="deck"></ul>
 
     </div>
-
         <div id="win-container">
             <div>
+
                 <h2>Fantastic job! You made it!</h2>
-                <!-- <a class="close" href="#" >×</a> -->
-                <div class="content-1">
-                   Your journey in details! 
-                </div>
-                <p>You did:<!-- </br>  -->
+
+                <div class="content-1">Your journey in details!</div>
+
+                <p>You did:
                     <span class="moves"></span> moves and 
                     <span class="stars-number"></span> stars
                 </p>
-                <p><span class="timer">During: <time></time></span></p>
-                <!-- <div class="content-2">
-                    <p>You made: <span id="finalMove"> </span> moves </p>
-                    <p>in <span id="totalTime"> </span> </p>
-                    <p>And you rating is:  <span id="starRating"></span></p>
-                </div> -->
-                <p>Can do better than that?</p>
-                <button type="button" id="play-again"><a>Play again!</a></button>
-            </div>
 
+                <p>
+                    <span class="timer">During: <time></time></span></p>
+                
+                <p>Can do better than that?</p>
+                
+                <button type="button" id="play-again"><a>Play again!</a></button>
+            
+            </div>
         </div>
+
+    <script src="js/jquery-3.3.1.slim.min.js"></script> 
     <script src="js/easytimer.min.js"></script> 
     <script src="js/app.js"></script>
 </body>
